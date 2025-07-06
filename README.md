@@ -2,6 +2,10 @@
 
 > Work in progress
 
+Neurotrace is a Python library designed to facilitate the development of AI applications with a focus on memory management, message handling, and integration with various data storage systems.
+It provides a structured approach to managing conversational data, enabling developers to build intelligent systems that can remember context, emotions, and user interactions.
+
+
 ## Core Schema
 
 The `neurotrace.core.schema` module defines the fundamental data structures used throughout the project.
