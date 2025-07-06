@@ -7,10 +7,10 @@ message append operations, retrieval functionality, and memory management featur
 token limits and time-based expiration.
 """
 
+from datetime import datetime, timedelta, timezone
+
 from neurotrace.core.hippocampus.stm import ShortTermMemory
 from neurotrace.core.schema import Message, MessageMetadata
-
-from datetime import timedelta, datetime
 
 
 def test_stm_append_and_retrieve():
@@ -46,19 +46,16 @@ def test_stm_clear():
 
 
 def test_stm_set_messages():
-    msg_list = [
-        Message(role="user", content="1"),
-        Message(role="ai", content="2")
-    ]
+    msg_list = [Message(role="user", content="1"), Message(role="ai", content="2")]
     stm = ShortTermMemory(max_tokens=10)
     stm.set_messages(msg_list)
     assert stm.get_messages() == msg_list
 
 
-
 # ----------------
 # ⚠️ Edge Case Tests
 # ----------------
+
 
 def test_empty_message_content():
     msg = Message(role="user", content="")
@@ -90,9 +87,8 @@ def test_message_without_metadata_defaults_correctly():
 
 def test_message_timestamp_is_recent():
     msg = Message(role="system", content="check timestamp")
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)  # Make this timezone-aware
     assert now - msg.timestamp < timedelta(seconds=5)
-
 
 
 def test_stm_exact_token_limit_boundary():
@@ -105,6 +101,7 @@ def test_stm_exact_token_limit_boundary():
     stm.append(msg2)
 
     assert len(stm.get_messages()) == 2  # total = 5, exact
+
 
 def test_stm_zero_token_limit_clears_all():
     """
@@ -127,6 +124,7 @@ def test_stm_multiple_evictions():
     msgs = stm.get_messages()
     assert len(msgs) == 1
     assert msgs[0].content == "msg3"
+
 
 def test_stm_append_overflow_all():
     """

@@ -1,0 +1,82 @@
+# Site information
+site_name: neurotrace
+site_url: https://your-site.com
+site_description: Docs for the repo
+site_author: Nitin Sharma
+
+# Theme settings (Material theme)
+theme:
+  name: material  # You can change to a different theme if desired
+  language: en
+  font:
+    text: "Roboto"
+    code: "Courier New"
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: teal
+
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: teal
+      accent: lime
+
+  # Additional theme features
+  features:
+    - navigation.instant      # Instant navigation (no page reload)
+    - navigation.top          # Sticky top navigation bar
+    - search.suggest          # Show search suggestions
+    - search.highlight        # Highlight search matches
+#    - dark_mode               # Enable dark mode toggle
+    - toc.integrate           # Add table of contents on pages
+    - toc.sticky              # Make table of contents sticky (sidebar)
+    - navigation.sections     # Show navigation as sections
+    - navigation.expand
+    - navigation.footer
+    - content.code.copy
+  navigation_depth: 1
+
+
+# Markdown extensions
+markdown_extensions:
+  - toc:
+      permalink: true        # Adds a link icon next to headings
+  - admonition               # For note, warning, tip boxes
+  - codehilite:
+      guess_lang: false      # Code block syntax highlighting
+  - footnotes                # Support for footnotes
+  - def_list                 # Definition lists
+  - attr_list                # Add custom attributes to elements
+  - pymdownx.tabbed          # Tabs for content
+  - pymdownx.details         # Expand/collapse sections
+  - pymdownx.inlinehilite    # Inline code highlighting
+  - pymdownx.snippets        # Include file contents via !include
+  - pymdownx.superfences:
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+
+# Plugins
+plugins:
+  - search
+  - awesome-pages
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+
+#  - miniatures:      # Create small image thumbnails in your docs
+#  - git-revision-date  # Automatically include the last modified date
+
+extra:
+  social:
+  generator: false
+
+#copyright: |
+#  Copyright @ Nitin Sharma
