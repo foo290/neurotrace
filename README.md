@@ -48,7 +48,7 @@ emotion = EmotionTag(
 Contains additional information and context about a message:
 
 ```python
-from neurotrace.core.schema import MessageMetadata
+from neurotrace.core.schema import MessageMetadata, EmotionTag
 
 metadata = MessageMetadata(
     token_count=150,                    # Number of tokens in the message
@@ -111,6 +111,7 @@ Convert messages to graph nodes and relationships:
 
 ```python
 from neurotrace.core.adapters.graph_db_adapter import to_graph_node, graph_edges_from_related_ids
+from neurotrace.core.schema import Message, MessageMetadata
 
 # Create a message with related IDs
 message = Message(
@@ -148,16 +149,8 @@ edges = graph_edges_from_related_ids(message)
 Convert between neurotrace Messages and LangChain message types:
 
 ```python
-from neurotrace.core.adapters.langchain_adapter import to_langchain_messages, from_langchain_message
+from neurotrace.core.adapters.langchain_adapter import from_langchain_message
 from langchain_core.messages import HumanMessage
-
-# Convert neurotrace messages to LangChain format
-messages = [
-    Message(role="user", content="Hi"),
-    Message(role="ai", content="Hello!")
-]
-langchain_msgs = to_langchain_messages(messages)
-# Results in LangChain HumanMessage and AIMessage objects
 
 # Convert from LangChain to neurotrace format
 lc_msg = HumanMessage(content="Hey there!")
@@ -166,3 +159,77 @@ msg = from_langchain_message(lc_msg)
 ```
 
 Each adapter provides type-safe conversion between neurotrace's Message format and the target system's format, ensuring compatibility with various databases and frameworks.
+
+## Memory Management
+
+The `neurotrace` system implements a sophisticated memory management system inspired by human memory architecture.
+
+### Short Term Memory (STM)
+
+Located in `neurotrace.core.hippocampus.stm`, the `ShortTermMemory` class provides temporary message storage with the following features:
+
+```python
+from neurotrace.core.hippocampus.stm import ShortTermMemory
+
+# Initialize with token limit
+stm = ShortTermMemory(max_tokens=50)
+
+# Add messages
+stm.append(message)  # automatically handles token budget
+
+# Retrieve all current messages
+messages = stm.get_messages()
+
+# Clear memory
+stm.clear()
+```
+
+Key features:
+- Token-based memory management
+- Automatic message eviction when token limit is exceeded
+- Timestamp-based message tracking
+- Efficient message retrieval
+
+### LangChain Integration
+
+The `NeurotraceMemory` class provides seamless integration with LangChain:
+
+```python
+from neurotrace.core.memory import NeurotraceMemory
+
+memory = NeurotraceMemory(max_tokens=20)
+
+# Works with LangChain's memory interface
+memory.save_context({"input": "What's your name?"}, {"output": "I'm Neurotrace."})
+history = memory.load_memory_variables({})
+
+# Access chat history
+messages = history["chat_history"]  # Returns LangChain message format
+```
+
+Features:
+- Compatible with LangChain's memory system
+- Automatic conversion between Neurotrace and LangChain message formats
+- Preserves all metadata during conversions
+- Token budget management
+- Supports message source tracking
+
+### Vector Database Integration
+
+The vector database adapter now supports:
+- Automatic embedding storage and retrieval
+- Metadata preservation in vector records
+- Custom tagging for efficient retrieval
+- UUID-based message tracking
+
+Example usage:
+```python
+from neurotrace.core.adapters.vector_db_adapter import to_vector_record
+
+record = to_vector_record(message)
+# Creates a vector record with:
+# - Unique ID
+# - Message content
+# - Embeddings
+# - Complete metadata (tags, source, timestamps, etc.)
+```

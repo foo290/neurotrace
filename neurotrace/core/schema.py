@@ -78,12 +78,12 @@ class Message(BaseModel):
         Convert this Message to a LangChain compatible format.
         This is a generic method that can be extended for different message types.
         """
-        if self.role == Role.HUMAN:
+        if Role.from_string(self.role) is Role.HUMAN:
             return self.to_human_message()
-        elif self.role == Role.AI:
+        elif Role.from_string(self.role) is Role.AI:
             return self.to_ai_message()
         else:
-            raise ValueError(f"Unsupported role: {self.role}. Use 'user' or 'ai'.")
+            raise ValueError(f"Unsupported role: {self.role}. Use 'human' or 'ai'.")
 
     def to_human_message(self) -> HumanMessage:
         """

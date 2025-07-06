@@ -1,8 +1,7 @@
 import enum
 from typing import Literal
 
-
-class Role():
+class Role(enum.Enum):
     HUMAN = "human"
     AI = "ai"
     SYSTEM = "system"
