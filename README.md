@@ -1,5 +1,6 @@
 # neurotrace
-A private repository for neurotrace project
+
+> Work in progress
 
 ## Core Schema
 
