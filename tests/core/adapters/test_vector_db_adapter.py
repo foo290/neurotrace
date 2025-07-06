@@ -1,3 +1,11 @@
+"""
+Test module for vector database adapter functionality.
+
+This module verifies the conversion of Message objects to vector database records,
+ensuring proper handling of message content, embeddings, and metadata during the
+transformation process for vector similarity search operations.
+"""
+
 from neurotrace.core.schema import Message, MessageMetadata
 from neurotrace.core.adapters.vector_db_adapter import to_vector_record
 

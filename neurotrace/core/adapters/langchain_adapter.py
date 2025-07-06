@@ -13,36 +13,6 @@ from langchain_core.messages import BaseMessage
 from neurotrace.core.schema import Message
 
 
-def to_langchain_messages(messages: List["Message"]) -> List[HumanMessage | AIMessage]:
-    """
-    Convert a list of neurotrace Messages to LangChain message format.
-
-    This function transforms neurotrace Message objects into their corresponding
-    LangChain message types based on their roles. Currently supports conversion
-    to HumanMessage and AIMessage types.
-
-    Args:
-        messages (List[Message]): A list of neurotrace Message objects to convert.
-
-    Returns:
-        List[HumanMessage | AIMessage]: A list of LangChain message objects where:
-            - Messages with role="user" become HumanMessage
-            - Messages with role="ai" become AIMessage
-
-    Example:
-        >>> msgs = [Message(role="user", content="Hello"), Message(role="ai", content="Hi")]
-        >>> langchain_msgs = to_langchain_messages(msgs)
-        >>> print(isinstance(langchain_msgs[0], HumanMessage))  # True
-    """
-    converted = []
-    for msg in messages:
-        if msg.role == "user":
-            converted.append(HumanMessage(content=msg.content))
-        elif msg.role == "ai":
-            converted.append(AIMessage(content=msg.content))
-    return converted
-
-
 def from_langchain_message(msg: BaseMessage, role: Optional[str] = None) -> Message:
     """
     Convert a LangChain message to a neurotrace Message.
@@ -69,7 +39,7 @@ def from_langchain_message(msg: BaseMessage, role: Optional[str] = None) -> Mess
     """
     detected_role = (
         role if role else
-        "user" if isinstance(msg, HumanMessage) else
+        "human" if isinstance(msg, HumanMessage) else
         "ai" if isinstance(msg, AIMessage) else
         "system"
     )

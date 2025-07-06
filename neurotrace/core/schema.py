@@ -5,11 +5,12 @@ This module defines the data structures used for messages, metadata, and emotion
 """
 
 from pydantic import BaseModel, Field
-from typing import List, Optional, Literal, Dict, Any
+from typing import List, Optional, Literal, Dict, Any, Union
 from datetime import datetime
 import uuid
 
 from langchain_core.messages import HumanMessage, AIMessage
+from neurotrace.core.constants import Role
 
 
 class EmotionTag(BaseModel):
@@ -33,6 +34,7 @@ class MessageMetadata(BaseModel):
     related_ids: Optional[List[str]] = []
     emotions: Optional[EmotionTag] = None
     compressed: Optional[bool] = False
+    session_id: Optional[str] = 'default'
 
 
 class Message(BaseModel):
@@ -57,11 +59,12 @@ class Message(BaseModel):
             "related_ids": ["msg_id_1", "msg_id_2"],# links to other related messages (graph edge)
             "emotions": {"sentiment": "positive", "intensity": 0.85},  # optional emotion tagging
             "compressed": False                     # for summarization/compression tracking
+            "session_id": "default"                # session identifier for context
         }
     }
     """
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    role: Literal["user", "ai", "system"]
+    role: str
     content: str
     timestamp: datetime = Field(default_factory=datetime.utcnow)
     metadata: MessageMetadata = Field(default_factory=MessageMetadata)
@@ -69,3 +72,53 @@ class Message(BaseModel):
     def estimated_token_length(self) -> int:
         # todo: Implement a more accurate token counting method
         return self.metadata.token_count or len(self.content.split())
+
+    def to_langchain_message(self) -> Union[HumanMessage, AIMessage]:
+        """
+        Convert this Message to a LangChain compatible format.
+        This is a generic method that can be extended for different message types.
+        """
+        if self.role == Role.HUMAN:
+            return self.to_human_message()
+        elif self.role == Role.AI:
+            return self.to_ai_message()
+        else:
+            raise ValueError(f"Unsupported role: {self.role}. Use 'user' or 'ai'.")
+
+    def to_human_message(self) -> HumanMessage:
+        """
+        Convert this Message to a HumanMessage for LangChain compatibility.
+        """
+        return HumanMessage(
+            id=self.id,
+            content=self.content,
+            additional_kwargs={
+                "id": self.id,
+                "metadata": self.metadata.model_dump()
+            }
+        )
+
+    def to_ai_message(self) -> AIMessage:
+        """
+        Convert this Message to an AIMessage for LangChain compatibility.
+        :return:
+        """
+        return AIMessage(
+            id=self.id,
+            content=self.content,
+            additional_kwargs={
+                "id": self.id,
+                "metadata": self.metadata.model_dump()
+            }
+        )
+
+    def __eq__(self, other):
+        if not isinstance(other, Message):
+            return False
+
+        # not comparing id
+        return (
+            self.role == other.role and
+            self.content == other.content and
+            self.metadata == other.metadata
+        )

@@ -1,3 +1,11 @@
+"""
+Test module for the graph database adapter functionality.
+
+This module verifies the conversion of Message objects to graph database nodes and edges,
+ensuring proper serialization of message content, metadata, and relationship mappings
+between messages in the graph structure.
+"""
+
 from neurotrace.core.schema import Message, MessageMetadata
 from neurotrace.core.adapters.graph_db_adapter import to_graph_node, graph_edges_from_related_ids
 
