@@ -1,0 +1,157 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual Environments
+.env/
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# PEP 582; used by e.g. pdm
+__pypackages__/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+hypothesis/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pytype
+.pytype/
+
+# Pyre type checker
+.pyre/
+
+# cProfile
+*.prof
+
+# Pytest
+.pytest_cache/
+
+# Debugger stuff
+__debug__/
+*.pyo
+
+# VS Code
+.vscode/
+.history/
+
+# PyCharm
+.idea/
+*.iml
+
+# Local environment settings
+*.env
+*.env.*
+.envrc
+*.ini
+*.cfg
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# Linux
+*~
+.nfs*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Wheel
+*.whl
+
+# PyBuilder
+target/
+
+# Site dirs
+.site/
+
+# Coverage reports
+htmlcov/
+cov.xml
+
+# Documentation builds
+docs/_build/
+book/_build/
+
+# Sphinx
+*.doctree
+
+# Jupyter runtime
+~$*.ipynb
+
+# SQLite database files
+*.sqlite3
+
+# Local dumps
+*.dump
+
+# Other metadata
+*.db
+*.tar.gz
+
+# Secrets
+secrets.json
+*.pem
+*.key
