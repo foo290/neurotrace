@@ -238,3 +238,78 @@ record = to_vector_record(message)
 # - Embeddings
 # - Complete metadata (tags, source, timestamps, etc.)
 ```
+
+## Usage with LangChain
+
+Neurotrace can be seamlessly integrated with LangChain for building conversational agents with both short-term and vector memory capabilities:
+
+```python
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain.agents import initialize_agent, AgentType
+from langchain.vectorstores import Chroma
+from neurotrace.core.memory import NeurotraceMemory
+from neurotrace.core.vector_memory import VectorMemoryAdapter
+from neurotrace.core.tools.vector import vector_memory_search_tool
+from neurotrace.core.schema import Message
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Initialize LLM
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
+
+# Setup short-term memory
+memory = NeurotraceMemory(max_tokens=100)
+
+# Setup vector store with Chroma
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+vectorstore = Chroma(embedding_function=embedding_model, persist_directory=".chromadb")
+vector_memory = VectorMemoryAdapter(vectorstore, embedding_model)
+
+# Create memory search tool
+mem_search_tool = vector_memory_search_tool(
+    vector_memory_adapter=vector_memory,
+)
+
+# Agent setup
+agent = initialize_agent(
+    tools=[mem_search_tool],
+    llm=llm,
+    agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
+    memory=memory,
+    verbose=True
+)
+```
+
+The above example demonstrates:
+- Integration with LangChain's agent system
+- Short-term memory management with NeurotraceMemory
+- Vector store setup using Chroma for long-term memory
+- Custom memory search tool integration
+- LLM configuration with Google's Gemini model
+
+You can run the agent in an interactive loop with vector memory storage:
+
+```python
+print("Neurotrace Agent (Gemini + Vector Memory). Type 'exit' to quit.")
+while True:
+    user_input = input("\nYou: ")
+    if user_input.strip().lower() == "exit":
+        break
+
+    response = agent.invoke({"input": user_input})
+    output = response["output"]
+    print("Agent:", output)
+
+    # Save both user and AI messages into vector memory
+    user_msg = Message(role="human", content=user_input)
+    ai_msg = Message(role="ai", content=output)
+    vector_memory.add_messages([user_msg, ai_msg])
+```
+
+The system automatically manages:
+- Short-term memory token limits
+- Vector embeddings for long-term storage
+- Conversation history in both memory systems
+- Memory search capabilities through custom tools
