@@ -13,6 +13,8 @@ import uuid
 from datetime import UTC, datetime
 from typing import List, Literal, Optional, Union
 
+from langchain_community.vectorstores.utils import filter_complex_metadata
+from langchain_core.documents import Document
 from langchain_core.messages import AIMessage, HumanMessage
 from pydantic import BaseModel, Field
 
@@ -143,6 +145,27 @@ class Message(BaseModel):
         """
         return AIMessage(
             id=self.id, content=self.content, additional_kwargs={"id": self.id, "metadata": self.metadata.model_dump()}
+        )
+
+    def to_document(self) -> Document:
+        """
+        Convert Message to LangChain-compatible Document with safe metadata.
+        """
+        raw_metadata = self.metadata.model_dump() if self.metadata else {}
+        doc = Document(page_content=self.content, metadata={"id": self.id, "role": self.role, **raw_metadata})
+        doc = filter_complex_metadata([doc])  # Remove lists, dicts, etc.
+
+        return doc[0]
+
+    @staticmethod
+    def from_document(doc: Document) -> "Message":
+        metadata = doc.metadata or {}
+        role_str = metadata.pop("role", Role.HUMAN.value)  # fallback to human
+        return Message(
+            role=Role.from_string(role_str),
+            content=doc.page_content,
+            metadata=MessageMetadata(**metadata) if metadata else None,
+            id=metadata.get("id"),
         )
 
     def __eq__(self, other):

@@ -1,46 +1,107 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.agents import initialize_agent, AgentType
-from langchain.tools import tool
-from neurotrace.core.memory import NeurotraceMemory
+# from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain.agents import initialize_agent, AgentType
+# from langchain.tools import tool
+# from neurotrace.core.memory import NeurotraceMemory
+# from dotenv import load_dotenv
+#
+# # Load environment variables
+# load_dotenv()
+#
+# # Tool that conforms to LangChain's expectations
+# @tool
+# def get_mood_tip(dummy: str) -> str:
+#     """Give a random wellness tip. Ignores input."""
+#     return "Take a walk and listen to calming music."
+#
+# # Initialize LLM
+# llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
+#
+# # Use NeurotraceMemory for short-term context
+# memory = NeurotraceMemory(max_tokens=100)
+#
+# # Agent setup
+# agent = initialize_agent(
+#     tools=[get_mood_tip],
+#     llm=llm,
+#     agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
+#     memory=memory,
+#     verbose=True
+# )
+#
+# # Driver loop
+# if __name__ == "__main__":
+#     print("Neurotrace Agent (Gemini). Type 'exit' to quit.")
+#     while True:
+#         user_input = input("\nYou: ")
+#         if user_input.strip().lower() == "exit":
+#             break
+#         response = agent.invoke({"input": user_input})
+#         print("Agent:", response["output"])
+#         print("-- Memory State --")
+#         print("Total Messages:", len(memory._stm.get_messages()))
+#         print("total tokens:", memory._stm.total_tokens())
+#         print("Current Memory:", memory._stm.get_messages())
+#         print("-------------------")
+#
+#
+
+import os
+
 from dotenv import load_dotenv
+from langchain.agents import AgentType, initialize_agent
+from langchain.tools import Tool
+from langchain.vectorstores import Chroma
+from langchain.vectorstores.base import VectorStoreRetriever
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+
+from neurotrace.core.memory import NeurotraceMemory
+from neurotrace.core.schema import Message
+from neurotrace.core.tools.vector import vector_memory_search_tool
+from neurotrace.core.utils import load_prompt  # Assuming prompt loader
+from neurotrace.core.vector_memory import VectorMemoryAdapter  # Your implementation
 
 # Load environment variables
 load_dotenv()
 
-# Tool that conforms to LangChain's expectations
-@tool
-def get_mood_tip(dummy: str) -> str:
-    """Give a random wellness tip. Ignores input."""
-    return "Take a walk and listen to calming music."
-
 # Initialize LLM
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
 
-# Use NeurotraceMemory for short-term context
+# Setup memory
 memory = NeurotraceMemory(max_tokens=100)
+
+# Setup vector store (Chroma in this example)
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+vectorstore = Chroma(embedding_function=embedding_model, persist_directory=".chromadb")
+vector_memory = VectorMemoryAdapter(vectorstore, embedding_model)
+
+mem_search_tool = vector_memory_search_tool(
+    vector_memory_adapter=vector_memory,
+)
 
 # Agent setup
 agent = initialize_agent(
-    tools=[get_mood_tip],
-    llm=llm,
-    agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
-    memory=memory,
-    verbose=True
+    tools=[mem_search_tool], llm=llm, agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION, memory=memory, verbose=True
 )
 
 # Driver loop
 if __name__ == "__main__":
-    print("Neurotrace Agent (Gemini). Type 'exit' to quit.")
+    print("Neurotrace Agent (Gemini + Vector Memory). Type 'exit' to quit.")
     while True:
         user_input = input("\nYou: ")
         if user_input.strip().lower() == "exit":
             break
+
         response = agent.invoke({"input": user_input})
-        print("Agent:", response["output"])
+        output = response["output"]
+        print("Agent:", output)
+
+        # Save both user and AI messages into vector memory
+        user_msg = Message(role="human", content=user_input)
+        ai_msg = Message(role="ai", content=output)
+        vector_memory.add_messages([user_msg, ai_msg])
+
+        # Debug Memory
         print("-- Memory State --")
-        print("Total Messages:", len(memory._stm.get_messages()))
-        print("total tokens:", memory._stm.total_tokens())
-        print("Current Memory:", memory._stm.get_messages())
-        print("-------------------")
-
-
+        print("STM Messages:", len(memory._stm.get_messages()))
+        print("STM Tokens:", memory._stm.total_tokens())
+        print("------------------")
