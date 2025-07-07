@@ -1,5 +1,5 @@
 import enum
-from typing import Literal
+
 
 class Role(enum.Enum):
     HUMAN = "human"
@@ -7,8 +7,8 @@ class Role(enum.Enum):
     SYSTEM = "system"
     TOOL = "tool"
 
-    # def __str__(self):
-    #     return self.value
+    def __str__(self):
+        return self.value
 
     @classmethod
     def from_string(cls, role_str: str):

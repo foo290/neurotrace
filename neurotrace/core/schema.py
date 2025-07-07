@@ -148,8 +148,15 @@ class Message(BaseModel):
         )
 
     def to_document(self) -> Document:
-        """
-        Convert Message to LangChain-compatible Document with safe metadata.
+        """Convert Message to LangChain-compatible Document with safe metadata.
+
+        Converts the current Message instance to a LangChain Document format,
+        ensuring that the metadata is properly serialized and complex types
+        are filtered out.
+
+        Returns:
+            Document: A LangChain Document instance containing the message content
+                and filtered metadata.
         """
         raw_metadata = self.metadata.model_dump() if self.metadata else {}
         doc = Document(page_content=self.content, metadata={"id": self.id, "role": self.role, **raw_metadata})
@@ -159,6 +166,19 @@ class Message(BaseModel):
 
     @staticmethod
     def from_document(doc: Document) -> "Message":
+        """Creates a Message instance from a LangChain Document.
+
+        Extracts content and metadata from a LangChain Document to create
+        a new Message instance. The role is extracted from metadata with
+        a fallback to HUMAN if not specified.
+
+        Args:
+            doc (Document): The LangChain Document to convert from.
+
+        Returns:
+            Message: A new Message instance containing the document's content
+                and metadata.
+        """
         metadata = doc.metadata or {}
         role_str = metadata.pop("role", Role.HUMAN.value)  # fallback to human
         return Message(
@@ -170,6 +190,10 @@ class Message(BaseModel):
 
     def __eq__(self, other):
         """Checks equality between two Message objects.
+
+        Compares two Message instances for equality based on their role,
+        content, and metadata. The id field is intentionally excluded from
+        the comparison.
 
         Args:
             other: Another object to compare with.
