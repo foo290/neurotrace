@@ -207,3 +207,21 @@ class Message(BaseModel):
 
         # not comparing id
         return self.role == other.role and self.content == other.content and self.metadata == other.metadata
+
+    def __repr__(self):
+        """String representation of the Message object.
+
+        Returns:
+            str: A string representation of the Message, including role, content,
+                and metadata.
+        """
+        return f"[{self.timestamp.date()}] ({self.role}): {self.content}"
+
+    def __str__(self):
+        """String representation of the Message object.
+
+        Returns:
+            str: A string representation of the Message, including role, content,
+                and metadata.
+        """
+        return f"[{self.timestamp.isoformat()}] ({self.role}): {self.content}"

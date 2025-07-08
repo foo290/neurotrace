@@ -81,7 +81,6 @@ class NeurotraceMemory(BaseMemory):
 
         # Build Message objects
         user_msg = Message(
-            id="boom",
             role=str(Role.HUMAN),
             content=user_input,
             metadata=MessageMetadata(
@@ -89,7 +88,6 @@ class NeurotraceMemory(BaseMemory):
             ),
         )
         ai_msg = Message(
-            id="boom",
             role=str(Role.AI),
             content=ai_output,
             metadata=MessageMetadata(

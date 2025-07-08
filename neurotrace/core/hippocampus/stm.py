@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from neurotrace.core.schema import Message
+from neurotrace.neurotrace_logging.memory_logger import MemoryLogger
 
 
 class BaseShortTermMemory(ABC):
@@ -99,6 +100,7 @@ class ShortTermMemory(BaseShortTermMemory):
             message.id = str(uuid.uuid4())
 
         self.messages.append(message)
+        MemoryLogger.log_add(message, destination="stm")
         self._evict_if_needed()
 
     def get_messages(self) -> List[Message]:
@@ -129,8 +131,9 @@ class ShortTermMemory(BaseShortTermMemory):
 
         # Keep at least 1 message even if over limit (unless max_tokens is zero)
         while total > self.max_tokens and len(self.messages) > 1:
-            total -= self.messages[0].estimated_token_length()
-            self.messages.pop(0)
+            evicted = self.messages.pop(0)
+            total -= evicted.estimated_token_length()
+            MemoryLogger.log_evict(evicted)
 
     def set_messages(self, messages: List[Message]) -> None:
         """Replace current messages with new list and maintain token limit.

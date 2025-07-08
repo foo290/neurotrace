@@ -10,14 +10,5 @@ Some examples of when to use this tool:
 - When the conversation contains any user preferences or settings that you want to remember.
 - When the conversation contains any user life events or milestones that you want to remember.
 - When the conversation contains if user has started or stopped doing something, like a hobby, a project, a task, etc.
-
-### Note: If user mention any date or time based event, make sure to save it with the date and time.
-example:
-
-user: I went to the park today.
-Save memory: User went to the park on "--INSERT TODAY'S DATE HERE--"
-
-user: I will go to the park tomorrow
-Save memory: User will go to the park on "--INSERT TOMORROW'S DATE HERE--"
-
-**ALWAYS SAVE MEMORIES WITH DATE TIME STAMP SO YOU CAN REMEMBER WHEN DID USER MENTIONED SOMETHING**
+- When the conversation contains any user goals or aspirations that you want to remember.
+- When the conversation contains any user preferences or interests, like, dislikes, love etc. that you want to remember.
