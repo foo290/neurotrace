@@ -63,6 +63,7 @@ from neurotrace.core.vector_memory import VectorMemoryAdapter  # Your implementa
 
 # Load environment variables
 load_dotenv()
+print(os.environ.get("TAVILY_API_KEY"))
 
 # Initialize LLM
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
@@ -106,7 +107,7 @@ if __name__ == "__main__":
         # Save both user and AI messages into vector memory
         user_msg = Message(role="human", content=user_input)
         ai_msg = Message(role="ai", content=output)
-        vector_memory.add_messages([user_msg, ai_msg])
+        # vector_memory.add_messages([user_msg, ai_msg])
 
         # Debug Memory
         print("-- Memory State --")

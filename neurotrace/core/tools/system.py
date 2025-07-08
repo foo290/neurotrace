@@ -2,9 +2,14 @@ import platform
 from datetime import datetime
 
 import requests
+from dotenv import load_dotenv
 from langchain.tools import BaseTool
+from langchain_tavily import TavilySearch
 
 from neurotrace.core.tools.factory import generic_tool_factory
+
+# Load environment variables
+load_dotenv()
 
 
 def get_current_datetime(_: str = "") -> str:
@@ -68,8 +73,26 @@ def get_day_of_week(_: str = "") -> str:
     return datetime.now().strftime("%A")
 
 
+# ============= EXTERNAL TOOLS =============
+
+web_search_tool = TavilySearch(
+    max_results=5,
+    topic="general",
+    # include_answer=False,
+    # include_raw_content=False,
+    # include_images=False,
+    # include_image_descriptions=False,
+    # include_favicon=False,
+    # search_depth="basic",
+    # time_range="day",
+    # include_domains=None,
+    # exclude_domains=None,
+    # country=None
+)
+
+
 def get_system_tools_list() -> list[BaseTool]:
-    return [
+    system_tools = [
         generic_tool_factory(
             tool_name="get_current_datetime",
             tool_description="Use this tool to get the current date and time in a human-readable format.",
@@ -96,3 +119,15 @@ def get_system_tools_list() -> list[BaseTool]:
             func=get_day_of_week,
         ),
     ]
+
+    # Add external tools like TavilySearch
+    system_tools.extend(
+        [
+            generic_tool_factory(
+                func=web_search_tool.run,
+                tool_name="web_search",
+                tool_description="Use this tool to perform a web search and retrieve relevant information.",
+            )
+        ]
+    )
+    return system_tools
