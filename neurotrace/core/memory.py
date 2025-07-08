@@ -6,7 +6,7 @@ from langchain_core.messages import BaseMessage
 from pydantic import ConfigDict
 
 from neurotrace.core.constants import Role
-from neurotrace.core.hippocampus.ltm import LangchainHistoryAdapter
+from neurotrace.core.hippocampus.ltm import LongTermMemory
 from neurotrace.core.hippocampus.stm import ShortTermMemory
 from neurotrace.core.schema import Message, MessageMetadata
 
@@ -21,7 +21,7 @@ class NeurotraceMemory(BaseMemory):
     Attributes:
         session_id (str): Unique identifier for the current chat session.
         _stm (ShortTermMemory): Short-term memory component with token limit.
-        _ltm (LangchainHistoryAdapter): Optional long-term memory adapter for persistence.
+        _ltm (LongTermMemory): Optional long-term memory adapter for persistence.
 
     Args:
         max_tokens (int, optional): Maximum number of tokens to store in short-term memory.
@@ -40,7 +40,7 @@ class NeurotraceMemory(BaseMemory):
         super().__init__()
         self.session_id = session_id
         self._stm = ShortTermMemory(max_tokens=max_tokens)
-        self._ltm = LangchainHistoryAdapter(history, session_id=session_id) if history else None
+        self._ltm = LongTermMemory(history, session_id=session_id) if history else None
 
     @property
     def memory_variables(self) -> List[str]:

@@ -11,7 +11,7 @@ from neurotrace.core.constants import Role
 from neurotrace.core.schema import Message
 
 
-class LongTermMemory(ABC):
+class BaseLongTermMemory(ABC):
     """Abstract base class for long-term memory storage.
 
     This class defines the interface for persistent storage of conversation
@@ -68,10 +68,10 @@ class LongTermMemory(ABC):
         pass
 
 
-class LangchainHistoryAdapter(LongTermMemory):
+class LongTermMemory(BaseLongTermMemory):
     """LangChain chat history adapter for long-term memory storage.
 
-    This adapter implements the LongTermMemory interface using LangChain's
+    This adapter implements the BaseLongTermMemory interface using LangChain's
     chat history components for persistent storage.
 
     Args:
