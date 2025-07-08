@@ -42,7 +42,7 @@ def vector_memory_search_tool(
     )
 
 
-def save_memory(
+def vector_memory_save_tool(
     vector_memory_adapter: "BaseVectorMemoryAdapter",
     tool_name: str = "save_memory",
     tool_description: str = None,

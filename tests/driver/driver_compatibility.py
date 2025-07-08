@@ -57,7 +57,10 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 from neurotrace.core.memory import NeurotraceMemory
 from neurotrace.core.schema import Message
 from neurotrace.core.tools.system import get_system_tools_list
-from neurotrace.core.tools.vector import save_memory, vector_memory_search_tool
+from neurotrace.core.tools.vector import (
+    vector_memory_save_tool,
+    vector_memory_search_tool,
+)
 from neurotrace.core.utils import load_prompt  # Assuming prompt loader
 from neurotrace.core.vector_memory import VectorMemoryAdapter  # Your implementation
 
@@ -79,9 +82,7 @@ vector_memory = VectorMemoryAdapter(vectorstore, embedding_model)
 mem_search_tool = vector_memory_search_tool(
     vector_memory_adapter=vector_memory,
 )
-mem_save_tool = save_memory(
-    vector_memory_adapter=vector_memory,
-)
+mem_save_tool = vector_memory_save_tool(vector_memory_adapter=vector_memory)
 
 # Agent setup
 agent = initialize_agent(

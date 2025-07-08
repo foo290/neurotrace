@@ -33,7 +33,7 @@ def get_ip_address(_: str = "") -> str:
         return "Unable to fetch IP address."
 
 
-def get_location_by_ip(_: str = "") -> str:
+def get_current_location(_: str = "") -> str:
     """
     Use this tool to get the current location based on the public IP address.
     :param _:
@@ -104,9 +104,9 @@ def get_system_tools_list() -> list[BaseTool]:
             func=get_ip_address,
         ),
         generic_tool_factory(
-            tool_name="get_location_by_ip",
-            tool_description="Use this tool to get the current location based on the public IP address.",
-            func=get_location_by_ip,
+            tool_name="get_current_location",
+            tool_description="Use this tool to get the current location.",
+            func=get_current_location,
         ),
         generic_tool_factory(
             tool_name="get_device_info",
