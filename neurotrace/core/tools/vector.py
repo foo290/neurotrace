@@ -1,10 +1,10 @@
 import json
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, Any, Dict, List
 
 from langchain.tools import Tool
 
 from neurotrace.core.constants import Role
-from neurotrace.core.schema import Message
+from neurotrace.core.schema import Message, MessageMetadata
 from neurotrace.core.tools.factory import generic_tool_factory
 from neurotrace.core.utils import load_prompt
 
@@ -64,7 +64,15 @@ def vector_memory_save_tool(
     """
 
     def _save_memory(summary: str) -> str:
-        message = Message(role=Role.HUMAN.value, content=summary)
+        message_text, convo_tags, *_ = summary.split("-- tags:") + [None, None]
+
+        if convo_tags:
+            convo_tags = convo_tags.strip().split(",")
+        else:
+            convo_tags = []
+
+        message = Message(role=Role.HUMAN.value, content=message_text, metadata=MessageMetadata(tags=convo_tags))
+
         vector_memory_adapter.add_messages([message])
         return "Memory saved."
 

@@ -69,7 +69,7 @@ load_dotenv()
 print(os.environ.get("TAVILY_API_KEY"))
 
 # Initialize LLM
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.3)
 
 # Setup memory
 memory = NeurotraceMemory(max_tokens=100)
