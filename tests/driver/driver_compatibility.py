@@ -56,11 +56,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 
 from neurotrace.core.memory import NeurotraceMemory
 from neurotrace.core.schema import Message
+from neurotrace.core.tools.memory import save_memory_tool
 from neurotrace.core.tools.system import get_system_tools_list
-from neurotrace.core.tools.vector import (
-    vector_memory_save_tool,
-    vector_memory_search_tool,
-)
+from neurotrace.core.tools.vector import vector_memory_search_tool
 from neurotrace.core.utils import load_prompt  # Assuming prompt loader
 from neurotrace.core.vector_memory import VectorMemoryAdapter  # Your implementation
 
@@ -69,20 +67,41 @@ load_dotenv()
 print(os.environ.get("TAVILY_API_KEY"))
 
 # Initialize LLM
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.3)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
 
 # Setup memory
-memory = NeurotraceMemory(max_tokens=100)
+memory = NeurotraceMemory(max_tokens=100, llm=llm)
 
 # Setup vector store (Chroma in this example)
 embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 vectorstore = Chroma(embedding_function=embedding_model, persist_directory=".chromadb")
-vector_memory = VectorMemoryAdapter(vectorstore, embedding_model)
+
+vector_memory = VectorMemoryAdapter(vectorstore)
 
 mem_search_tool = vector_memory_search_tool(
     vector_memory_adapter=vector_memory,
 )
-mem_save_tool = vector_memory_save_tool(vector_memory_adapter=vector_memory)
+# mem_save_tool = vector_memory_save_tool(vector_memory_adapter=vector_memory)
+
+from langchain_community.graphs.neo4j_graph import Neo4jGraph
+
+from neurotrace.core.hippocampus.memory_orchestrator import MemoryOrchestrator
+
+graph_store = Neo4jGraph(
+    url=os.environ.get("NEO4J_URL", "bolt://localhost:7687"),
+    username=os.environ.get("NEO4J_USERNAME", "neo4j"),
+    password=os.environ.get("NEO4J_PASSWORD", "test1234"),
+)
+
+
+mem_orchestrator = MemoryOrchestrator(
+    llm=llm,
+    vector_store=vectorstore,
+    graph_store=graph_store,
+)
+mem_save_tool = save_memory_tool(
+    memory_orchestrator=mem_orchestrator,
+)
 
 # Agent setup
 agent = initialize_agent(

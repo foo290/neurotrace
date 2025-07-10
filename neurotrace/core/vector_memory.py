@@ -70,7 +70,7 @@ class VectorMemoryAdapter(BaseVectorMemoryAdapter):
             text to vectors.
     """
 
-    def __init__(self, vector_store: VectorStore, embedding_model: Embeddings):
+    def __init__(self, vector_store: VectorStore):
         """
         Vector memory adapter that wraps a LangChain-compatible vector store.
 
@@ -79,7 +79,7 @@ class VectorMemoryAdapter(BaseVectorMemoryAdapter):
             embedding_model (Embeddings): Embedding model to generate embeddings.
         """
         self.vector_store = vector_store
-        self.embedding_model = embedding_model
+        self.embedding_model = vector_store.embeddings
 
     def add_messages(self, messages: List[Message]) -> None:
         """Add multiple messages to the vector store.

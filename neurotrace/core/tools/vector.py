@@ -1,10 +1,8 @@
 import json
-from typing import TYPE_CHECKING, Any, Dict, List
+from typing import TYPE_CHECKING
 
 from langchain.tools import Tool
 
-from neurotrace.core.constants import Role
-from neurotrace.core.schema import Message, MessageMetadata
 from neurotrace.core.tools.factory import generic_tool_factory
 from neurotrace.core.utils import load_prompt
 
@@ -37,47 +35,6 @@ def vector_memory_search_tool(
     """
     return generic_tool_factory(
         func=vector_memory_adapter.search,
-        tool_name=tool_name,
-        tool_description=tool_description or load_prompt(tool_name),
-        **kwargs,
-    )
-
-
-def vector_memory_save_tool(
-    vector_memory_adapter: "BaseVectorMemoryAdapter",
-    tool_name: str = "save_memory",
-    tool_description: str = None,
-    **kwargs,
-) -> Tool:
-    """
-    Creates a tool that allows the agent to explicitly save important memories
-    to long-term vector memory.
-
-    Args:
-        vector_memory_adapter (BaseVectorMemoryAdapter): The adapter to store messages.
-        tool_name (str, optional): Name of the tool. Defaults to "save_memory".
-        tool_description (str, optional): Description of the tool. Loads from prompt if None.
-        **kwargs: Additional keyword args for Tool.
-
-    Returns:
-        Tool: A LangChain-compatible tool.
-    """
-
-    def _save_memory(summary: str) -> str:
-        message_text, convo_tags, *_ = summary.split("-- tags:") + [None, None]
-
-        if convo_tags:
-            convo_tags = convo_tags.strip().split(",")
-        else:
-            convo_tags = []
-
-        message = Message(role=Role.HUMAN.value, content=message_text, metadata=MessageMetadata(tags=convo_tags))
-
-        vector_memory_adapter.add_messages([message])
-        return "Memory saved."
-
-    return generic_tool_factory(
-        func=_save_memory,
         tool_name=tool_name,
         tool_description=tool_description or load_prompt(tool_name),
         **kwargs,

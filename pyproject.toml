@@ -20,9 +20,13 @@ dependencies = [
     "mkdocs-material>=9.6.15",
     "mkdocstrings>=0.29.1",
     "mkdocstrings-python>=1.16.12",
+    "neo4j>=5.28.1",
+    "networkx>=3.5",
     "pre-commit>=4.2.0",
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
+    "scikit-learn>=1.7.0",
+    "sentence-transformers>=5.0.0",
     "tavily-python>=0.7.9",
 ]
 

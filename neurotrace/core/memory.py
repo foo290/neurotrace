@@ -1,6 +1,8 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
+from langchain.llms.base import BaseLLM
 from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.language_models import BaseChatModel
 from langchain_core.memory import BaseMemory
 from langchain_core.messages import BaseMessage
 from pydantic import ConfigDict
@@ -36,8 +38,15 @@ class NeurotraceMemory(BaseMemory):
         extra="allow",
     )
 
-    def __init__(self, max_tokens: int = 2048, history: BaseChatMessageHistory = None, session_id: str = "default"):
+    def __init__(
+        self,
+        llm: Union[BaseLLM, BaseChatModel],
+        session_id: str = "default",
+        max_tokens: int = 2048,
+        history: BaseChatMessageHistory = None,
+    ):
         super().__init__()
+        self.llm = llm
         self.session_id = session_id
         self._stm = ShortTermMemory(max_tokens=max_tokens)
         self._ltm = LongTermMemory(history, session_id=session_id) if history else None
