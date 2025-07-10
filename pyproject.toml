@@ -40,4 +40,8 @@ profile = "black"
 include-package-data = true
 
 [tool.setuptools.package-data]
-"neurotrace" = ["*.md", "neurotrace/prompts/tools/*.md"]
+"neurotrace" = ["**/*.md"]
+
+
+[tool.setuptools.packages.find]
+include = ["neurotrace"]
