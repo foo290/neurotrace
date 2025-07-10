@@ -35,3 +35,9 @@ line-length = 120
 
 [tool.isort]
 profile = "black"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"neurotrace" = ["*.md", "neurotrace/prompts/tools/*.md"]
