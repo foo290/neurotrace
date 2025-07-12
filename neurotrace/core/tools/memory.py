@@ -1,8 +1,10 @@
 from langchain_core.tools import Tool
 
 from neurotrace.core.hippocampus.memory_orchestrator import MemoryOrchestrator
+from neurotrace.core.llm_tasks import perform_summarisation
 from neurotrace.core.tools.factory import generic_tool_factory
 from neurotrace.core.utils import load_prompt
+from neurotrace.prompts.task_prompts import PROMPT_SUMMARISE_VECTOR_AND_GRAPH_MEMORY
 
 
 def save_memory_tool(
@@ -97,3 +99,70 @@ def _save_in_graph_memory(
 
     memory_orchestrator.save_in_graph_memory(summary, tags=tags)
     return "Graph memory saved."
+
+
+def memory_search_tool(
+    memory_orchestrator: MemoryOrchestrator,
+    tool_name: str = "search_memory",
+    tool_description: str = None,
+    **kwargs,
+) -> Tool:
+    """
+    Creates a tool that searches memory (vector + graph) and returns fused results.
+
+    Args:
+        memory_orchestrator (MemoryOrchestrator): Manages both vector and graph memory.
+        tool_name (str): Name of the tool. Defaults to "search_memory".
+        tool_description (str): Description shown to the agent. Loaded from prompt if None.
+        **kwargs: Other Tool configuration options.
+
+    Returns:
+        Tool: A LangChain tool for searching across memory.
+    """
+
+    def _search(query: str) -> str:
+        """
+        Searches both vector and graph memory for relevant info.
+
+        Args:
+            query (str): The question or search query.
+
+        Returns:
+            str: Combined result from vector and graph memory.
+        """
+
+        # Vector memory: semantic search
+        vector_results = memory_orchestrator.search_vector_memory(query)
+        vector_summary = (
+            "\n".join(f"- {doc.content}" for doc in vector_results)
+            if vector_results
+            else "No relevant vector memory found."
+        )
+
+        # Graph memory: entity/triplet reasoning
+        graph_result = memory_orchestrator.search_graph_memory(query)
+        graph_summary = graph_result if graph_result else "No graph relationships found."
+
+        summarised_memory_context = perform_summarisation(
+            llm=memory_orchestrator.llm,
+            prompt=PROMPT_SUMMARISE_VECTOR_AND_GRAPH_MEMORY,
+            prompt_placeholders={
+                "vector_memory": vector_summary,
+                "graph_memory": graph_summary,
+            },
+        )
+
+        # Combine and return
+        return (
+            "This is the summarised context from both vector and graph memory:\n"
+            "--- START OF MEMORY CONTEXT ---\n\n"
+            f"{summarised_memory_context}\n\n"
+            "--- END OF MEMORY CONTEXT ---"
+        )
+
+    return generic_tool_factory(
+        func=_search,
+        tool_name=tool_name,
+        tool_description=tool_description or load_prompt(tool_name),
+        **kwargs,
+    )

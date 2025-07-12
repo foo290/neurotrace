@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 
-dual_output_prompt = PromptTemplate.from_template(
+PROMPT_VECTOR_AND_GRAPH_SUMMARY = PromptTemplate.from_template(
     """
 You are a multi-format summarization assistant.
 
@@ -31,6 +31,19 @@ RETURN A JSON WITH KEYS:
 
 vector_summary,
 graph_summary
+"""
+)
+
+
+PROMPT_GENERAL_SUMMARY = PromptTemplate.from_template(
+    """
+You are a summarization assistant.
+Given the input message below, generate a concise and meaningful summary.
+
+MESSAGE:
+{message}
+
+Return a string that is semantically rich, concise, and meaningful.
 """
 )
 
@@ -85,4 +98,36 @@ Return a JSON List of Lists in the format:
 
 Return an empty list if no triplets can be extracted.
 """
+)
+
+
+PROMPT_SUMMARISE_VECTOR_AND_GRAPH_MEMORY = PromptTemplate(
+    input_variables=["vector_memory", "graph_memory"],
+    template="""
+You are an intelligent assistant summarizing relevant context retrieved from two memory systems:
+
+1. Vector Memory – Unstructured, semantically retrieved passages from long-term memory.
+2. Graph Memory – Structured relationships and factual connections between concepts.
+
+Your task is to read the memory contents below and produce a concise, meaningful summary that captures the key ideas, facts, or relationships.
+
+---
+
+Vector Memory:
+{vector_memory}
+
+---
+
+Graph Memory:
+{graph_memory}
+
+---
+
+Instructions:
+- If both memory sources contain relevant content, synthesize them into a unified summary.
+- If only one of them has relevant content, summarize based on that source alone.
+- If neither contains useful information, return this exact sentence:
+
+"No relevant context found in memory."
+""",
 )

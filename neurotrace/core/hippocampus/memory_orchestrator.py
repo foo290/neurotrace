@@ -36,3 +36,9 @@ class MemoryOrchestrator:
         message = Message(role=Role.AI.value, content=summary, metadata=MessageMetadata(tags=tags))
         self._vector_memory_adapter.add_messages([message])
         return "Vector memory saved."
+
+    def search_vector_memory(self, query: str, k: int = 5) -> List[Message]:
+        return self._vector_memory_adapter.search(query, k)
+
+    def search_graph_memory(self, query: str) -> str:
+        return self._graph_memory_adapter.ask_graph(query)["result"]

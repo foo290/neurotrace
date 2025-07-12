@@ -78,9 +78,9 @@ vectorstore = Chroma(embedding_function=embedding_model, persist_directory=".chr
 
 vector_memory = VectorMemoryAdapter(vectorstore)
 
-mem_search_tool = vector_memory_search_tool(
-    vector_memory_adapter=vector_memory,
-)
+# mem_search_tool = vector_memory_search_tool(
+#     vector_memory_adapter=vector_memory,
+# )
 # mem_save_tool = vector_memory_save_tool(vector_memory_adapter=vector_memory)
 
 from langchain_community.graphs.neo4j_graph import Neo4jGraph
@@ -100,6 +100,12 @@ mem_orchestrator = MemoryOrchestrator(
     graph_store=graph_store,
 )
 mem_save_tool = save_memory_tool(
+    memory_orchestrator=mem_orchestrator,
+)
+
+from neurotrace.core.tools.memory import memory_search_tool
+
+mem_search_tool = memory_search_tool(
     memory_orchestrator=mem_orchestrator,
 )
 

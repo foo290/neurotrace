@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import List, Literal, Tuple, Union
+from typing import Any, Dict, List, Literal, Tuple, Union
 
-from langchain.chains import GraphCypherQAChain
 from langchain.llms.base import BaseLLM
+from langchain_community.chains.graph_qa.cypher import GraphCypherQAChain
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.graphs.graph_store import GraphStore
 from langchain_core.language_models import BaseChatModel
@@ -30,6 +30,9 @@ class GraphTripletIndexer(GraphTripletIndexerBase):
 
 
 class BaseGraphMemoryAdapter(ABC): ...
+
+
+# class CustomGraphCypherQAChain(GraphCypherQAChain):
 
 
 class GraphMemoryAdapter(BaseGraphMemoryAdapter):
@@ -92,7 +95,7 @@ class GraphMemoryAdapter(BaseGraphMemoryAdapter):
         for triplet in triplets:
             self.insert_triplets(triplet, sender=sender, tags=tags)
 
-    def ask_graph(self, query: str) -> str:
+    def ask_graph(self, query: str) -> Dict[str, Any]:
         """
         Ask a question to the graph memory and get an answer.
 
