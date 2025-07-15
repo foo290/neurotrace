@@ -24,6 +24,10 @@ Neurotrace provides persistent, intelligent memory for conversational agents tha
   - Combined vector and graph-based RAG
   - Enhanced contextual reasoning capabilities
 
+## Graph db integration (Graph RAG)
+
+![neo4j.png](readme_assets/images/neo4j.png)
+
 ## 🎯 Target Users
 
 - Developers building AI agents with LangChain
