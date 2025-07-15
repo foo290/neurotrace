@@ -1,5 +1,8 @@
 # Neurotrace
 
+
+[![PyPI version](https://img.shields.io/pypi/v/neurotrace)](https://pypi.org/project/neurotrace/)
+
 A hybrid memory library designed for LangChain agents, providing dual-layer memory architecture with short-term buffer memory and long-term hybrid RAG system capabilities.
 
 ## Overview
