@@ -12,22 +12,28 @@
         <meta name="author" content="Nitin Sharma">
       
       
+        <link rel="canonical" href="https://your-site.com/reference/documentation/neurotrace_logging/logger_factory/">
       
       
+        <link rel="prev" href="../../core/tools/vector/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../memory_logger/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>neurotrace</title>
+        <title>neurotrace.neurotrace_logging.logger_factory - neurotrace</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -73,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#neurotraceneurotrace_logginglogger_factory" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -85,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="neurotrace" class="md-header__button md-logo" aria-label="neurotrace" data-md-component="logo">
+    <a href="../../../.." title="neurotrace" class="md-header__button md-logo" aria-label="neurotrace" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -105,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              neurotrace.neurotrace_logging.logger_factory
             
           </span>
         </div>
@@ -213,7 +224,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="neurotrace" class="md-nav__button md-logo" aria-label="neurotrace" data-md-component="logo">
+    <a href="../../../.." title="neurotrace" class="md-nav__button md-logo" aria-label="neurotrace" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -228,8 +239,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -240,13 +253,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
@@ -262,7 +273,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Reference
@@ -273,6 +284,8 @@
                 
   
   
+    
+  
   
   
     
@@ -282,13 +295,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
         
           
           <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
@@ -304,7 +315,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_1">
             <span class="md-nav__icon md-icon"></span>
             Documentation
@@ -360,7 +371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/constants/" class="md-nav__link">
+      <a href="../../core/constants/" class="md-nav__link">
         
   
   
@@ -383,7 +394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/graph_memory/" class="md-nav__link">
+      <a href="../../core/graph_memory/" class="md-nav__link">
         
   
   
@@ -406,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/llm_tasks/" class="md-nav__link">
+      <a href="../../core/llm_tasks/" class="md-nav__link">
         
   
   
@@ -429,7 +440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/memory/" class="md-nav__link">
+      <a href="../../core/memory/" class="md-nav__link">
         
   
   
@@ -452,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/schema/" class="md-nav__link">
+      <a href="../../core/schema/" class="md-nav__link">
         
   
   
@@ -475,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/utils/" class="md-nav__link">
+      <a href="../../core/utils/" class="md-nav__link">
         
   
   
@@ -498,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/vector_memory/" class="md-nav__link">
+      <a href="../../core/vector_memory/" class="md-nav__link">
         
   
   
@@ -563,7 +574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/adapters/langchain_adapter/" class="md-nav__link">
+      <a href="../../core/adapters/langchain_adapter/" class="md-nav__link">
         
   
   
@@ -586,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/adapters/vector_db_adapter/" class="md-nav__link">
+      <a href="../../core/adapters/vector_db_adapter/" class="md-nav__link">
         
   
   
@@ -659,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/hippocampus/ltm/" class="md-nav__link">
+      <a href="../../core/hippocampus/ltm/" class="md-nav__link">
         
   
   
@@ -682,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/hippocampus/memory_orchestrator/" class="md-nav__link">
+      <a href="../../core/hippocampus/memory_orchestrator/" class="md-nav__link">
         
   
   
@@ -705,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/hippocampus/stm/" class="md-nav__link">
+      <a href="../../core/hippocampus/stm/" class="md-nav__link">
         
   
   
@@ -778,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/tools/factory/" class="md-nav__link">
+      <a href="../../core/tools/factory/" class="md-nav__link">
         
   
   
@@ -801,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/tools/memory/" class="md-nav__link">
+      <a href="../../core/tools/memory/" class="md-nav__link">
         
   
   
@@ -824,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/tools/system/" class="md-nav__link">
+      <a href="../../core/tools/system/" class="md-nav__link">
         
   
   
@@ -847,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/core/tools/vector/" class="md-nav__link">
+      <a href="../../core/tools/vector/" class="md-nav__link">
         
   
   
@@ -883,6 +894,8 @@
                 
   
   
+    
+  
   
   
     
@@ -892,13 +905,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_2" checked>
         
           
           <label class="md-nav__link" for="__nav_1_1_2" id="__nav_1_1_2_label" tabindex="0">
@@ -914,7 +925,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_1_2">
             <span class="md-nav__icon md-icon"></span>
             Neurotrace logging
@@ -925,10 +936,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/reference/documentation/neurotrace_logging/logger_factory/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    neurotrace.neurotrace_logging.logger_factory
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -939,6 +972,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#neurotrace.neurotrace_logging.logger_factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      logger_factory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="logger_factory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.neurotrace_logging.logger_factory.get_logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_logger
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -951,7 +1028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/neurotrace_logging/memory_logger/" class="md-nav__link">
+      <a href="../memory_logger/" class="md-nav__link">
         
   
   
@@ -1024,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/documentation/prompts/task_prompts/" class="md-nav__link">
+      <a href="../../prompts/task_prompts/" class="md-nav__link">
         
   
   
@@ -1075,8 +1152,157 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="neurotraceneurotrace_logginglogger_factory"><code>neurotrace.neurotrace_logging.logger_factory</code><a class="headerlink" href="#neurotraceneurotrace_logginglogger_factory" title="Permanent link">&para;</a></h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="neurotrace.neurotrace_logging.logger_factory" class="doc doc-heading">
+            <code>neurotrace.neurotrace_logging.logger_factory</code>
+
+
+<a href="#neurotrace.neurotrace_logging.logger_factory" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="neurotrace.neurotrace_logging.logger_factory.get_logger" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
+
+<a href="#neurotrace.neurotrace_logging.logger_factory.get_logger" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Central logger factory for Neurotrace with support for:
+- Stream logs
+- Daily rotating file logs
+- Optional network logging via sockets</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>neurotrace/neurotrace_logging/logger_factory.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Central logger factory for Neurotrace with support for:</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">    - Stream logs</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">    - Daily rotating file logs</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">    - Optional network logging via sockets</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">LOG_LEVEL</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">))</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># prevent duplicate logs</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] [</span><span class="si">%(levelname)s</span><span class="s2">] [</span><span class="si">%(name)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>        <span class="k">if</span> <span class="n">LOG_TO_STREAM</span><span class="p">:</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>            <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>        <span class="k">if</span> <span class="n">LOG_TO_FILE</span><span class="p">:</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>            <span class="n">Path</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>            <span class="n">file_handler</span> <span class="o">=</span> <span class="n">TimedRotatingFileHandler</span><span class="p">(</span><span class="n">LOG_FILE_PATH</span><span class="p">,</span> <span class="n">when</span><span class="o">=</span><span class="s2">&quot;midnight&quot;</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>            <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="k">if</span> <span class="n">LOG_TO_NETWORK</span><span class="p">:</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>            <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>                <span class="n">socket_handler</span> <span class="o">=</span> <span class="n">SocketHandler</span><span class="p">(</span><span class="n">LOG_HOST</span><span class="p">,</span> <span class="n">LOG_PORT</span><span class="p">)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>                <span class="n">socket_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>                <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">socket_handler</span><span class="p">)</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not attach network log handler: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="k">return</span> <span class="n">logger</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1094,6 +1320,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../core/tools/vector/" class="md-footer__link md-footer__link--prev" aria-label="Previous: neurotrace.core.tools.vector">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                neurotrace.core.tools.vector
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../memory_logger/" class="md-footer__link md-footer__link--next" aria-label="Next: neurotrace.neurotrace_logging.memory_logger">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                neurotrace.neurotrace_logging.memory_logger
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1115,10 +1379,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["navigation.instant", "navigation.top", "search.suggest", "search.highlight", "toc.integrate", "toc.sticky", "navigation.sections", "navigation.expand", "navigation.footer", "content.code.copy"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top", "search.suggest", "search.highlight", "toc.integrate", "toc.sticky", "navigation.sections", "navigation.expand", "navigation.footer", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
     
   </body>

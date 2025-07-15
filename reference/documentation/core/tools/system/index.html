@@ -12,13 +12,13 @@
         <meta name="author" content="Nitin Sharma">
       
       
-        <link rel="canonical" href="https://your-site.com/reference/documentation/core/adapters/vector_db_adapter/">
+        <link rel="canonical" href="https://your-site.com/reference/documentation/core/tools/system/">
       
       
-        <link rel="prev" href="../langchain_adapter/">
+        <link rel="prev" href="../memory/">
       
       
-        <link rel="next" href="../../hippocampus/ltm/">
+        <link rel="next" href="../vector/">
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>neurotrace.core.adapters.vector_db_adapter - neurotrace</title>
+        <title>neurotrace.core.tools.system - neurotrace</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#neurotracecoreadaptersvector_db_adapter" class="md-skip">
+        <a href="#neurotracecoretoolssystem" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              neurotrace.core.adapters.vector_db_adapter
+              neurotrace.core.tools.system
             
           </span>
         </div>
@@ -529,8 +529,6 @@
                 
   
   
-    
-  
   
   
     
@@ -540,11 +538,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_1_8" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1_1_8" >
         
           
           <label class="md-nav__link" for="__nav_1_1_1_8" id="__nav_1_1_1_8_label" tabindex="0">
@@ -560,7 +560,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_1_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_1_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_1_1_8">
             <span class="md-nav__icon md-icon"></span>
             Adapters
@@ -574,7 +574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../langchain_adapter/" class="md-nav__link">
+      <a href="../../adapters/langchain_adapter/" class="md-nav__link">
         
   
   
@@ -594,32 +594,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    neurotrace.core.adapters.vector_db_adapter
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../adapters/vector_db_adapter/" class="md-nav__link">
         
   
   
@@ -630,50 +608,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#neurotrace.core.adapters.vector_db_adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      vector_db_adapter
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="vector_db_adapter">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#neurotrace.core.adapters.vector_db_adapter.to_vector_record" class="md-nav__link">
-    <span class="md-ellipsis">
-      to_vector_record
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -810,6 +744,8 @@
                 
   
   
+    
+  
   
   
     
@@ -819,13 +755,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1_1_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_1_10" checked>
         
           
           <label class="md-nav__link" for="__nav_1_1_1_10" id="__nav_1_1_1_10_label" tabindex="0">
@@ -841,7 +775,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_1_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_1_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_1_1_10">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -855,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tools/factory/" class="md-nav__link">
+      <a href="../factory/" class="md-nav__link">
         
   
   
@@ -878,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tools/memory/" class="md-nav__link">
+      <a href="../memory/" class="md-nav__link">
         
   
   
@@ -898,10 +832,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../tools/system/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    neurotrace.core.tools.system
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -912,6 +868,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system" class="md-nav__link">
+    <span class="md-ellipsis">
+      system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system.get_current_datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_current_datetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system.get_current_location" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_current_location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system.get_day_of_week" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_day_of_week
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system.get_device_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_device_info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neurotrace.core.tools.system.get_ip_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_ip_address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -924,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tools/vector/" class="md-nav__link">
+      <a href="../vector/" class="md-nav__link">
         
   
   
@@ -1156,25 +1192,20 @@
 
 
 
-<h1 id="neurotracecoreadaptersvector_db_adapter"><code>neurotrace.core.adapters.vector_db_adapter</code><a class="headerlink" href="#neurotracecoreadaptersvector_db_adapter" title="Permanent link">&para;</a></h1>
+<h1 id="neurotracecoretoolssystem"><code>neurotrace.core.tools.system</code><a class="headerlink" href="#neurotracecoretoolssystem" title="Permanent link">&para;</a></h1>
 
 
 <div class="doc doc-object doc-module">
 
 
 
-<h2 id="neurotrace.core.adapters.vector_db_adapter" class="doc doc-heading">
-            <code>neurotrace.core.adapters.vector_db_adapter</code>
+<h2 id="neurotrace.core.tools.system" class="doc doc-heading">
+            <code>neurotrace.core.tools.system</code>
 
 
-<a href="#neurotrace.core.adapters.vector_db_adapter" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#neurotrace.core.tools.system" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents first">
-
-        <p>Vector Database Adapter Module.</p>
-<p>This module provides adapter functions for converting between neurotrace's internal
-message format and vector database record format. It handles the serialization of
-Message objects into a format suitable for vector database storage and retrieval.</p>
 
 
 
@@ -1197,123 +1228,59 @@ Message objects into a format suitable for vector database storage and retrieval
 <div class="doc doc-object doc-function">
 
 
-<h3 id="neurotrace.core.adapters.vector_db_adapter.to_vector_record" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">to_vector_record</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code>
+<h3 id="neurotrace.core.tools.system.get_current_datetime" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_current_datetime</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
-<a href="#neurotrace.core.adapters.vector_db_adapter.to_vector_record" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#neurotrace.core.tools.system.get_current_datetime" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Converts a Message object to a vector database record format.</p>
-<p>This function transforms a neurotrace Message instance into a dictionary format
-suitable for storage in a vector database. It extracts essential fields including
-the message ID, content text, embedding vector, and all associated metadata.</p>
+        <p>Use this tool to get the current date and time in a human-readable format.
+:param _:
+:return:</p>
 
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>msg</code>
-            </td>
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="Message (neurotrace.core.schema.Message)" href="../../schema/#neurotrace.core.schema.Message">Message</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The Message object to convert.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Dict[str, Any]: A dictionary containing:
-- id: The message's unique identifier
-- text: The message content
-- embedding: The message's vector embedding
-- metadata: All additional metadata as a dictionary</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<details class="example" open>
-  <summary>Example</summary>
-  <blockquote>
-<blockquote>
-<blockquote>
-<p>message = Message(id="123", content="Hello", metadata=MessageMetadata(...))
-record = to_vector_record(message)
-print(record)
-{
-    'id': '123',
-    'text': 'Hello',
-    'embedding': [...],
-    'metadata': {...}
-}</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</details>
 
             <details class="quote">
-              <summary>Source code in <code>neurotrace/core/adapters/vector_db_adapter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+              <summary>Source code in <code>neurotrace/core/tools/system.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-15">15</a></span>
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
 <span class="normal"><a href="#__codelineno-0-17">17</a></span>
 <span class="normal"><a href="#__codelineno-0-18">18</a></span>
 <span class="normal"><a href="#__codelineno-0-19">19</a></span>
 <span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_current_datetime</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">    Use this tool to get the current date and time in a human-readable format.</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">    :param _:</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">    :return:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%A, %B </span><span class="si">%d</span><span class="s2">, %Y at %I:%M %p&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="neurotrace.core.tools.system.get_current_location" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_current_location</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+<a href="#neurotrace.core.tools.system.get_current_location" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Use this tool to get the current location based on the public IP address.
+:param _:
+:return:</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>neurotrace/core/tools/system.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-36">36</a></span>
 <span class="normal"><a href="#__codelineno-0-37">37</a></span>
 <span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
@@ -1324,41 +1291,151 @@ print(record)
 <span class="normal"><a href="#__codelineno-0-44">44</a></span>
 <span class="normal"><a href="#__codelineno-0-45">45</a></span>
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">to_vector_record</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="sd">    Converts a Message object to a vector database record format.</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">    This function transforms a neurotrace Message instance into a dictionary format</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">    suitable for storage in a vector database. It extracts essential fields including</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">    the message ID, content text, embedding vector, and all associated metadata.</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">        msg (Message): The Message object to convert.</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">        Dict[str, Any]: A dictionary containing:</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">            - id: The message&#39;s unique identifier</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">            - text: The message content</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">            - embedding: The message&#39;s vector embedding</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">            - metadata: All additional metadata as a dictionary</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    Example:</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        &gt;&gt;&gt; message = Message(id=&quot;123&quot;, content=&quot;Hello&quot;, metadata=MessageMetadata(...))</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">        &gt;&gt;&gt; record = to_vector_record(message)</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        &gt;&gt;&gt; print(record)</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        {</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">            &#39;id&#39;: &#39;123&#39;,</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">            &#39;text&#39;: &#39;Hello&#39;,</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">            &#39;embedding&#39;: [...],</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">            &#39;metadata&#39;: {...}</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">        }</span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_current_location</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">    Use this tool to get the current location based on the public IP address.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">    :param _:</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">    :return:</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="k">return</span> <span class="p">{</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="s2">&quot;embedding&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">embedding</span><span class="p">,</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="p">}</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>        <span class="n">ip</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.ipify.org&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://ipinfo.io/</span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">/json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="n">city</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="n">region</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>        <span class="n">country</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>        <span class="k">return</span> <span class="s2">&quot;Unable to determine location.&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="neurotrace.core.tools.system.get_day_of_week" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_day_of_week</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+<a href="#neurotrace.core.tools.system.get_day_of_week" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Use this tool to get the current day of the week.
+:param _:
+:return:</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>neurotrace/core/tools/system.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_day_of_week</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    Use this tool to get the current day of the week.</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    :param _:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">    :return:</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%A&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="neurotrace.core.tools.system.get_device_info" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_device_info</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+<a href="#neurotrace.core.tools.system.get_device_info" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Use this tool to get basic information about the current device.
+:param _:
+:return:</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>neurotrace/core/tools/system.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_device_info</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    Use this tool to get basic information about the current device.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    :param _:</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">    :return:</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="k">return</span> <span class="p">(</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>        <span class="sa">f</span><span class="s2">&quot;System: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>        <span class="sa">f</span><span class="s2">&quot;Release: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">release</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>        <span class="sa">f</span><span class="s2">&quot;Processor: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">processor</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>        <span class="sa">f</span><span class="s2">&quot;Machine: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">machine</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="neurotrace.core.tools.system.get_ip_address" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_ip_address</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+<a href="#neurotrace.core.tools.system.get_ip_address" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Use this tool to get the current public IP address.
+:param _:
+:return:</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>neurotrace/core/tools/system.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_ip_address</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">    Use this tool to get the current public IP address.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="sd">    :param _:</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">    :return:</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>        <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.ipify.org&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>        <span class="k">return</span> <span class="s2">&quot;Unable to fetch IP address.&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1407,7 +1484,7 @@ print(record)
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../langchain_adapter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: neurotrace.core.adapters.langchain_adapter">
+          <a href="../memory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: neurotrace.core.tools.memory">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1417,20 +1494,20 @@ print(record)
                 Previous
               </span>
               <div class="md-ellipsis">
-                neurotrace.core.adapters.langchain_adapter
+                neurotrace.core.tools.memory
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../hippocampus/ltm/" class="md-footer__link md-footer__link--next" aria-label="Next: neurotrace.core.hippocampus.ltm">
+          <a href="../vector/" class="md-footer__link md-footer__link--next" aria-label="Next: neurotrace.core.tools.vector">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                neurotrace.core.hippocampus.ltm
+                neurotrace.core.tools.vector
               </div>
             </div>
             <div class="md-footer__button md-icon">
