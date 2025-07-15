@@ -1,6 +1,6 @@
 [project]
 name = "neurotrace"
-version = "1.0.2"
+version = "1.0.3"
 description = "Memory of your Agent 📝"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -46,3 +46,9 @@ include = ["neurotrace*"]
 
 [tool.setuptools.package-data]
 "neurotrace" = ["**/*.md"]
+
+[project.urls]
+"Homepage" = "https://github.com/foo290/neurotrace"
+"Repository" = "https://github.com/foo290/neurotrace"
+"Issues" = "https://github.com/foo290/neurotrace/issues"
+"Documentation" = "https://foo290.github.io/neurotrace"
