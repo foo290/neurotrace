@@ -1,12 +1,75 @@
-# neurotrace
+# Neurotrace
 
-> Work in progress
+A hybrid memory library designed for LangChain agents, providing dual-layer memory architecture with short-term buffer memory and long-term hybrid RAG system capabilities.
 
-Neurotrace is a Python library designed to facilitate the development of AI applications with a focus on memory management, message handling, and integration with various data storage systems.
-It provides a structured approach to managing conversational data, enabling developers to build intelligent systems that can remember context, emotions, and user interactions.
+## Overview
 
+Neurotrace provides persistent, intelligent memory for conversational agents that improves over time and enables contextual understanding and recall. It combines vector-based and graph-based RAG (Retrieval Augmented Generation) systems to provide deeper and more accurate contextual reasoning.
 
-## Core Schema
+## 🎯 Key Features
+
+- **Dual-Layer Memory Architecture**
+  - Short-term buffer memory for immediate context
+  - Long-term hybrid RAG system for persistent storage
+
+- **Real-time Processing**
+  - Real-time recall during conversations
+  - Intelligent storage and compression
+
+- **Rich Message Structure**
+  - Custom metadata-rich message formats
+  - Support for filtering and semantic tracing
+
+- **Hybrid Retrieval System**
+  - Combined vector and graph-based RAG
+  - Enhanced contextual reasoning capabilities
+
+## 🎯 Target Users
+
+- Developers building AI agents with LangChain
+- Researchers exploring memory augmentation in LLMs
+- Enterprises deploying context-aware AI assistants
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install neurotrace
+```
+
+### Complete Example
+
+A complete, runnable example is available in `examples/agent_example.py`. This example demonstrates:
+- Setting up a Neurotrace agent with both short-term and long-term memory
+- Configuring vector and graph storage
+- Implementing an interactive conversation loop
+- Monitoring memory usage
+
+To run the example:
+```bash
+# First set up your environment variables
+export NEO4J_URL=bolt://localhost:7687
+export NEO4J_USERNAME=neo4j
+export NEO4J_PASSWORD=your_password
+export GOOGLE_API_KEY=your_google_api_key
+
+# Then run the example
+python examples/agent_example.py
+```
+
+### Required Environment Variables
+
+```bash
+NEO4J_URL=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=your_password
+GOOGLE_API_KEY=your_google_api_key  # For Gemini LLM
+```
+
+## Technical Documentation
+
+### Core Schema
 
 The `neurotrace.core.schema` module defines the fundamental data structures used throughout the project.
 
@@ -78,238 +141,3 @@ Each field in MessageMetadata is optional and provides specific context:
 - `related_ids`: Connects related messages
 - `emotions`: Captures emotional context
 - `compressed`: Indicates if content is compressed
-
-## Adapters Module
-
-The `neurotrace.core.adapters` module provides utilities for converting Message objects to and from various database and framework formats.
-
-### Vector Database Adapter
-
-Convert messages to a format suitable for vector database storage:
-
-```python
-from neurotrace.core.schema import Message, MessageMetadata
-from neurotrace.core.adapters.vector_db_adapter import to_vector_record
-
-# Create a message with an embedding
-message = Message(
-    content="Hello world",
-    metadata=MessageMetadata(
-        embedding=[0.1, 0.2, 0.3],
-        tags=["greeting"]
-    )
-)
-
-# Convert to vector DB format
-record = to_vector_record(message)
-# Results in: {
-#     "id": "<uuid>",
-#     "text": "Hello world",
-#     "embedding": [0.1, 0.2, 0.3],
-#     "metadata": {"tags": ["greeting"], ...}
-# }
-```
-
-### Graph Database Adapter
-
-Convert messages to graph nodes and relationships:
-
-```python
-from neurotrace.core.adapters.graph_db_adapter import to_graph_node, graph_edges_from_related_ids
-from neurotrace.core.schema import Message, MessageMetadata
-
-# Create a message with related IDs
-message = Message(
-    content="Follow-up response",
-    metadata=MessageMetadata(
-        related_ids=["msg123"],
-        tags=["follow-up"]
-    )
-)
-
-# Convert to graph node
-node = to_graph_node(message)
-# Results in: {
-#     "id": "<uuid>",
-#     "labels": ["Message"],
-#     "properties": {
-#         "role": "user",
-#         "content": "Follow-up response",
-#         "tags": ["follow-up"],
-#         ...
-#     }
-# }
-
-# Generate relationship edges
-edges = graph_edges_from_related_ids(message)
-# Results in: [{
-#     "from": "<current_msg_id>",
-#     "to": "msg123",
-#     "type": "RELATED_TO"
-# }]
-```
-
-### LangChain Adapter
-
-Convert between neurotrace Messages and LangChain message types:
-
-```python
-from neurotrace.core.adapters.langchain_adapter import from_langchain_message
-from langchain_core.messages import HumanMessage
-
-# Convert from LangChain to neurotrace format
-lc_msg = HumanMessage(content="Hey there!")
-msg = from_langchain_message(lc_msg)
-# Results in Message(role="user", content="Hey there!")
-```
-
-Each adapter provides type-safe conversion between neurotrace's Message format and the target system's format, ensuring compatibility with various databases and frameworks.
-
-## Memory Management
-
-The `neurotrace` system implements a sophisticated memory management system inspired by human memory architecture.
-
-### Short Term Memory (STM)
-
-Located in `neurotrace.core.hippocampus.stm`, the `ShortTermMemory` class provides temporary message storage with the following features:
-
-```python
-from neurotrace.core.hippocampus.stm import ShortTermMemory
-
-# Initialize with token limit
-stm = ShortTermMemory(max_tokens=50)
-
-# Add messages
-stm.append(message)  # automatically handles token budget
-
-# Retrieve all current messages
-messages = stm.get_messages()
-
-# Clear memory
-stm.clear()
-```
-
-Key features:
-- Token-based memory management
-- Automatic message eviction when token limit is exceeded
-- Timestamp-based message tracking
-- Efficient message retrieval
-
-### LangChain Integration
-
-The `NeurotraceMemory` class provides seamless integration with LangChain:
-
-```python
-from neurotrace.core.memory import NeurotraceMemory
-
-memory = NeurotraceMemory(max_tokens=20)
-
-# Works with LangChain's memory interface
-memory.save_context({"input": "What's your name?"}, {"output": "I'm Neurotrace."})
-history = memory.load_memory_variables({})
-
-# Access chat history
-messages = history["chat_history"]  # Returns LangChain message format
-```
-
-Features:
-- Compatible with LangChain's memory system
-- Automatic conversion between Neurotrace and LangChain message formats
-- Preserves all metadata during conversions
-- Token budget management
-- Supports message source tracking
-
-### Vector Database Integration
-
-The vector database adapter now supports:
-- Automatic embedding storage and retrieval
-- Metadata preservation in vector records
-- Custom tagging for efficient retrieval
-- UUID-based message tracking
-
-Example usage:
-```python
-from neurotrace.core.adapters.vector_db_adapter import to_vector_record
-
-record = to_vector_record(message)
-# Creates a vector record with:
-# - Unique ID
-# - Message content
-# - Embeddings
-# - Complete metadata (tags, source, timestamps, etc.)
-```
-
-## Usage with LangChain
-
-Neurotrace can be seamlessly integrated with LangChain for building conversational agents with both short-term and vector memory capabilities:
-
-```python
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain.agents import initialize_agent, AgentType
-from langchain.vectorstores import Chroma
-from neurotrace.core.memory import NeurotraceMemory
-from neurotrace.core.vector_memory import VectorMemoryAdapter
-from neurotrace.core.tools.vector import vector_memory_search_tool
-from neurotrace.core.schema import Message
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Initialize LLM
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)
-
-# Setup short-term memory
-memory = NeurotraceMemory(max_tokens=100)
-
-# Setup vector store with Chroma
-embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-vectorstore = Chroma(embedding_function=embedding_model, persist_directory=".chromadb")
-vector_memory = VectorMemoryAdapter(vectorstore, embedding_model)
-
-# Create memory search tool
-mem_search_tool = vector_memory_search_tool(
-    vector_memory_adapter=vector_memory,
-)
-
-# Agent setup
-agent = initialize_agent(
-    tools=[mem_search_tool],
-    llm=llm,
-    agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION,
-    memory=memory,
-    verbose=True
-)
-```
-
-The above example demonstrates:
-- Integration with LangChain's agent system
-- Short-term memory management with NeurotraceMemory
-- Vector store setup using Chroma for long-term memory
-- Custom memory search tool integration
-- LLM configuration with Google's Gemini model
-
-You can run the agent in an interactive loop with vector memory storage:
-
-```python
-print("Neurotrace Agent (Gemini + Vector Memory). Type 'exit' to quit.")
-while True:
-    user_input = input("\nYou: ")
-    if user_input.strip().lower() == "exit":
-        break
-
-    response = agent.invoke({"input": user_input})
-    output = response["output"]
-    print("Agent:", output)
-
-    # Save both user and AI messages into vector memory
-    user_msg = Message(role="human", content=user_input)
-    ai_msg = Message(role="ai", content=output)
-    vector_memory.add_messages([user_msg, ai_msg])
-```
-
-The system automatically manages:
-- Short-term memory token limits
-- Vector embeddings for long-term storage
-- Conversation history in both memory systems
-- Memory search capabilities through custom tools
