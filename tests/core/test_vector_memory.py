@@ -19,7 +19,7 @@ def mock_embedding_model():
 
 @pytest.fixture
 def adapter(mock_vector_store, mock_embedding_model):
-    return VectorMemoryAdapter(vector_store=mock_vector_store, embedding_model=mock_embedding_model)
+    return VectorMemoryAdapter(vector_store=mock_vector_store)
 
 
 @pytest.fixture
@@ -60,7 +60,7 @@ def test_delete_raises_if_not_supported(mock_vector_store, mock_embedding_model)
     if hasattr(mock_vector_store, "delete"):
         delattr(mock_vector_store, "delete")
 
-    adapter = VectorMemoryAdapter(vector_store=mock_vector_store, embedding_model=mock_embedding_model)
+    adapter = VectorMemoryAdapter(vector_store=mock_vector_store)
 
     with pytest.raises(NotImplementedError):
         adapter.delete(["msg1"])

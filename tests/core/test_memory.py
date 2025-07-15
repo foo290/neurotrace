@@ -6,20 +6,30 @@ which implements a custom memory system for LangChain integrations. Tests cover 
 variable handling, context preservation, and message conversion functionality.
 """
 
+from unittest.mock import MagicMock
+
+import pytest
+from langchain.schema import AIMessage, HumanMessage
+from langchain_core.chat_history import InMemoryChatMessageHistory
+from langchain_core.language_models import BaseChatModel
+
+from neurotrace.core.constants import Role
 from neurotrace.core.memory import NeurotraceMemory
 from neurotrace.core.schema import Message, MessageMetadata
 
-from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain.schema import AIMessage, HumanMessage
-from neurotrace.core.constants import Role
 
-def test_memory_variables_returns_expected_key():
-    memory = NeurotraceMemory()
+@pytest.fixture
+def mock_llm():
+    return MagicMock(spec=BaseChatModel)
+
+
+def test_memory_variables_returns_expected_key(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
     assert memory.memory_variables == ["chat_history"]
 
 
-def test_save_and_load_context_preserves_content():
-    memory = NeurotraceMemory(max_tokens=20)
+def test_save_and_load_context_preserves_content(mock_llm):
+    memory = NeurotraceMemory(max_tokens=20, llm=mock_llm)
 
     inputs = {"input": "What's your name?"}
     outputs = {"output": "I'm Neurotrace."}
@@ -37,8 +47,8 @@ def test_save_and_load_context_preserves_content():
     assert msgs[1].content == "I'm Neurotrace."
 
 
-def test_message_format_conversion_matches_neurotrace_model():
-    memory = NeurotraceMemory()
+def test_message_format_conversion_matches_neurotrace_model(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
 
     memory.save_context({"input": "Hi"}, {"output": "Hello"})
 
@@ -57,16 +67,12 @@ def test_message_format_conversion_matches_neurotrace_model():
     assert user_msg.metadata.source == "chat"
 
 
-def test_conversion_preserves_metadata_fields():
-    memory = NeurotraceMemory()
+def test_conversion_preserves_metadata_fields(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
     msg = Message(
         role="human",
         content="Check metadata",
-        metadata=MessageMetadata(
-            token_count=5,
-            tags=["test", "meta"],
-            source="chat"
-        )
+        metadata=MessageMetadata(token_count=5, tags=["test", "meta"], source="chat"),
     )
     memory._stm.append(msg)
 
@@ -76,8 +82,8 @@ def test_conversion_preserves_metadata_fields():
     assert loaded["chat_history"][0].content == "Check metadata"
 
 
-def test_memory_clear_empties_internal_stm():
-    memory = NeurotraceMemory()
+def test_memory_clear_empties_internal_stm(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
     memory.save_context({"input": "To be deleted"}, {"output": "Gone"})
 
     assert len(memory._stm.get_messages()) == 2
@@ -85,8 +91,8 @@ def test_memory_clear_empties_internal_stm():
     assert len(memory._stm.get_messages()) == 0
 
 
-def test_save_context_handles_missing_input_output_keys():
-    memory = NeurotraceMemory()
+def test_save_context_handles_missing_input_output_keys(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
     memory.save_context({}, {})  # no "input" or "output" keys
 
     msgs = memory._stm.get_messages()
@@ -95,8 +101,8 @@ def test_save_context_handles_missing_input_output_keys():
     assert msgs[1].content == ""
 
 
-def test_eviction_behavior_under_token_budget():
-    memory = NeurotraceMemory(max_tokens=5)
+def test_eviction_behavior_under_token_budget(mock_llm):
+    memory = NeurotraceMemory(max_tokens=5, llm=mock_llm)
 
     memory._stm.append(Message(role="user", content="first", metadata=MessageMetadata(token_count=3)))
     memory._stm.append(Message(role="ai", content="second", metadata=MessageMetadata(token_count=3)))
@@ -107,8 +113,8 @@ def test_eviction_behavior_under_token_budget():
     assert msgs[0].content == "second"
 
 
-def test_conversion_round_trip_integrity():
-    memory = NeurotraceMemory()
+def test_conversion_round_trip_integrity(mock_llm):
+    memory = NeurotraceMemory(mock_llm)
 
     memory.save_context({"input": "Ping"}, {"output": "Pong"})
 
@@ -118,22 +124,22 @@ def test_conversion_round_trip_integrity():
     assert loaded_msgs["chat_history"][0].content == "Ping"
 
 
-def test_neurotrace_memory_with_ltm_and_stm():
+def test_neurotrace_memory_with_ltm_and_stm(mock_llm):
     # Setup
     history = InMemoryChatMessageHistory()
     session_id = "default"
-    memory = NeurotraceMemory(max_tokens=100, history=history, session_id=session_id)
+    memory = NeurotraceMemory(max_tokens=100, history=history, session_id=session_id, llm=mock_llm)
 
     # Define expected messages
     user_msg = Message(
-        id='boom',
-        role=Role.HUMAN,
+        id="boom",
+        role=Role.HUMAN.value,
         content="What's the weather like today?",
         metadata=MessageMetadata(session_id=session_id),
     )
     ai_msg = Message(
-        id='boom',
-        role=Role.AI,
+        id="boom",
+        role=Role.AI.value,
         content="It's sunny and warm!",
         metadata=MessageMetadata(session_id=session_id),
     )
