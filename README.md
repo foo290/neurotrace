@@ -29,7 +29,7 @@ Neurotrace provides persistent, intelligent memory for conversational agents tha
 
 ## Graph db integration (Graph RAG)
 
-![neo4j.png](readme_assets/images/neo4j.png)
+![neo4j.png](https://github.com/foo290/neurotrace/blob/main/readme_assets/images/neo4j.png)
 
 ## 🎯 Target Users
 
