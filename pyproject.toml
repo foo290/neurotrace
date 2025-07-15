@@ -1,7 +1,7 @@
 [project]
 name = "neurotrace"
-version = "1.0.0"
-description = "Add your description here"
+version = "1.0.1"
+description = "Memory of your Agent 📝"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
